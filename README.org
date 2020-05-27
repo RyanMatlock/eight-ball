@@ -1,0 +1,9 @@
+#+title: =eight-ball.el=
+
+* Usage
+* Installation
+* Customization
+Customizable variables are defined using ~defcustom~, so...
+
+** ~eight-ball-timestamp-format~
+[[https://www.gnu.org/software/emacs/manual/html_node/elisp/Time-Parsing.html][~format-time-string~]]
