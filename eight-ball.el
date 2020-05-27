@@ -52,6 +52,22 @@ See documentation for FORMAT-TIME-STRING for valid values."
 
 ;; hash question, mod 1000, wait for that many milliseconds (so that question
 ;; content affects time, which affects random seed)
+;; (string-to-number (secure-hash 'sha256 "foo") 16)  ;; hmm, overflow
+;; (string-to-number "ff" 16)  ;; -> 255 (and stuff) (works)
+;; (string-to-number "100" 16)  ;; -> 256 (and stuff) (works)
+;; (message "%d" (string-to-number "100" 16))  ;; -> 256 (works)
+
+(let* ((hash (secure-hash 'sha256 "foo"))
+       (size (length hash))
+       (small-hash (substring hash (- size 5) nil))
+       (decimal-hash (string-to-number small-hash 16)))
+  (message (concat "hash: %s\n"
+                   "small-hash: %s\n"
+                   "decimal-hash: %d")
+           hash
+           small-hash
+           decimal-hash))
+
 
 (defcustom eight-ball-print-question-with-response t
   "Include question with response in message?
