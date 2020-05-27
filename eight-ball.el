@@ -36,7 +36,7 @@ Default values are standard Magic 8-ball responses."
   "Include timestamp when adding EIGHT-BALL response to KILL-RING?
 Default: t."
   :type 'boolean
-  :options '(choice (const :tag "Include timestamp" t)
+  :options '(choice (const :tag "Yes" t)
                     (const :tag "Omit timestamp" nil))
   :group 'eight-ball-custom)
 
@@ -64,27 +64,25 @@ See documentation for FORMAT-TIME-STRING for valid values."
 ;; the length of the available choices, take a random number in that range, and
 ;; then take the modulo of that
 
-(let* ((hash (secure-hash 'sha256 "foo"))
-       (size (length hash))
-       (small-hash (substring hash (- size 5) nil))
-       (decimal-hash (string-to-number small-hash 16))
-       (mod-hash (% decimal-hash 20)))
-  (message (concat "hash: %s\n"
-                   "small-hash: %s\n"
-                   "decimal-hash: %d\n"
-                   "mod-hash: %d")
-           hash
-           small-hash
-           decimal-hash
-           mod-hash))
-
-
+;; (let* ((hash (secure-hash 'sha256 "foo"))
+;;        (size (length hash))
+;;        (small-hash (substring hash (- size 5) nil))
+;;        (decimal-hash (string-to-number small-hash 16))
+;;        (mod-hash (% decimal-hash 20)))
+;;   (message (concat "hash: %s\n"
+;;                    "small-hash: %s\n"
+;;                    "decimal-hash: %d\n"
+;;                    "mod-hash: %d")
+;;            hash
+;;            small-hash
+;;            decimal-hash
+;;            mod-hash))
 
 (defcustom eight-ball-print-question-with-response t
   "Include question with response in message?
 Default: t."
   :type 'boolean
-  :options '(choice (const :tag "Include question when printing response" t)
+  :options '(choice (const :tag "Yes" t)
                     (const :tag "Print response only" nil))
   :group 'eight-ball-custom)
 
