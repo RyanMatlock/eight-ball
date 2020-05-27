@@ -1,0 +1,5 @@
+# Org mode output
+auto/
+*.pdf
+*.tex
+*.html
