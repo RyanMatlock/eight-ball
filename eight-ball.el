@@ -57,16 +57,27 @@ See documentation for FORMAT-TIME-STRING for valid values."
 ;; (string-to-number "100" 16)  ;; -> 256 (and stuff) (works)
 ;; (message "%d" (string-to-number "100" 16))  ;; -> 256 (works)
 
+;; better than sleeping: add the last few digits of the hash to the random
+;; number, then take the modulo of the length of the responses
+;; or
+;; take the last several digits of the hash, round down to a number divisible by
+;; the length of the available choices, take a random number in that range, and
+;; then take the modulo of that
+
 (let* ((hash (secure-hash 'sha256 "foo"))
        (size (length hash))
        (small-hash (substring hash (- size 5) nil))
-       (decimal-hash (string-to-number small-hash 16)))
+       (decimal-hash (string-to-number small-hash 16))
+       (mod-hash (% decimal-hash 20)))
   (message (concat "hash: %s\n"
                    "small-hash: %s\n"
-                   "decimal-hash: %d")
+                   "decimal-hash: %d\n"
+                   "mod-hash: %d")
            hash
            small-hash
-           decimal-hash))
+           decimal-hash
+           mod-hash))
+
 
 
 (defcustom eight-ball-print-question-with-response t
@@ -83,18 +94,27 @@ Passing the \\[[universal-argument]]..."
   (interactive "p\nsAsk the Magic 8-Ball a question: ")
   ;; (message "add-to-kill-ring: %s, question: %s" add-to-kill-ring question)
   (random t)
-  ;; stolen from
-  ;; https://www.rosettacode.org/wiki/Pick_random_element#Emacs_Lisp
-  (let* ((size (length eight-ball-reponses))
-         (index (random size))
+  (let* ((hash (secure-hash 'sha256 question))
+         (small-hash (substring hash (- (length hash) 6) nil))
+         (decimal-hash (string-to-number small-hash 16))
+         (size (length eight-ball-reponses))
+         ;; subtracting inner mod from decimal-hash ensures that values will be
+         ;; evenly distributed across eight-ball-responses (i.e. that value
+         ;; be a multiple of size)
+         ;; outer mod ensures it's a valid index for eight-ball-responses
+         ;;
+         ;; this appears to generate all possibilities; will have to histogram
+         ;; results later to feel more confident that this is a reasonable
+         ;; approach
+         ;; I mean, it's unreasonable in the sense that I could just do
+         ;; (index (random size)), but I want to "mix in" the string
+         (index (% (random (- decimal-hash (% decimal-hash
+                                              size)))
+                   size))
          (response (nth index eight-ball-reponses)))
     (when add-to-kill-ring
       (let (formatted-question-response)
         ))
     (message "%s" response)))
-
-
-
-
 
 
