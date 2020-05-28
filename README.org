@@ -1,8 +1,8 @@
 # README for eight-ball
 * Purpose
-Sometimes you just want to ask the universe (through a pseudo-random number
-generator) big (yes or no) questions like, "Am I a good person?" or, "Should I
-get a burrito for lunch?" The Magic 8-Ball is here to help with that!
+Sometimes you just want to ask the universe big yes or no questions like, "Am I
+a good person?" or, "Should I get a burrito for lunch?" The Magic 8-Ball is
+here to help with that!
 
 * Usage
 =M-x eight-ball= will prompt you to ask a question, and it will respond with a
