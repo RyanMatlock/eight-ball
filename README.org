@@ -12,6 +12,7 @@ answer. Passing the universal argument to =eight-ball= (typically done by
 invoking it with =C-u M-x eight-ball=) will copy a timestamp, the question, and
 response to the =kill-ring=.
 
+[TODO: fix internal link to work with GitHub]
 See [[*Customization][Customization]] for whether to print the question along with response in the
 minibuffer, whether or not to include the timestamp, what format the timestamp
 should take, and the responses with which the Magic 8-Ball can reply.
