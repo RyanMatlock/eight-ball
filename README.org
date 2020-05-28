@@ -1,6 +1,4 @@
-#+options: toc:nil
-#+title: =eight-ball.el=
-
+# README for eight-ball
 * Purpose
 Sometimes you just want to ask the universe (through a pseudo-random number
 generator) big (yes or no) questions like, "Am I a good person?" or, "Should I
@@ -18,7 +16,7 @@ minibuffer, whether or not to include the timestamp, what format the timestamp
 should take, and the responses with which the Magic 8-Ball can reply.
 
 * Installation
-** From =git=
+** From GitHub
 Assuming this repo has been cloned to =/path/to/eight-ball=, add the following to
 your init file:
 #+BEGIN_SRC emacs-lisp
