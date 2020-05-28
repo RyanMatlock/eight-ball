@@ -1,9 +1,7 @@
-;; eight-ball.el
-;;
-;; Implements a Magic 8-Ball function, EIGHT-BALL: you ask a question, and it
-;; randomly responds.
-;;
-;; (If silly things like 「M-x butterfly」 can exist, why can't this.)
+;;; eight-ball --- Ask the Magic 8-Ball a queustion.
+;;;
+;;; Commentary:
+;;; If silly things like 「M-x butterfly」 can exist, why can't this.
 
 (defgroup 8ball nil
   "Ask the Magic 8-Ball a question."
@@ -60,10 +58,10 @@ Default: t."
 (defun eight-ball (&optional add-to-kill-ring question)
   "Prompts user to ask a question, responds like a Magic 8-Ball.
 
-Passing the \\[[universal-argument]] will add question and response to
-KILL-RING, and if EIGHT-BALL-KILL-RING-INCLUDE-TIMESTAMP is not nil, the
-question/response is preceeded by timestamp formatted per
-EIGHT-BALL-TIMESTAMP-FORMAT.
+Passing the \\[[universal-argument]] will make ADD-TO-KILL-RING non-nil, which
+will add QUESTION and response to KILL-RING, and if
+EIGHT-BALL-KILL-RING-INCLUDE-TIMESTAMP is not nil, the question/response is
+preceeded by timestamp formatted per EIGHT-BALL-TIMESTAMP-FORMAT.
 
 Why would you want your Magic 8-Ball queries on the KILL-RING? In case you're
 weird like me and log them for the purpose of performing analytics on the timing
@@ -71,6 +69,7 @@ and content of said queries."
   (interactive "P\nsAsk the Magic 8-Ball a question: ")
   (random t)
   (let* ((hash (secure-hash 'sha256 question))
+         ;; overflow if full hash is converted to decimal, so take 6 digits
          (small-hash (substring hash (- (length hash) 6) nil))
          (decimal-hash (string-to-number small-hash 16))
          (size (length eight-ball-reponses))
