@@ -4,7 +4,7 @@
 
 ;; Author: Ryan Matlock
 ;; Created: 2020-05-28
-;; Version: 0.1
+;; Version: 0.1.0
 ;; Keywords: games
 ;; URL: https://github.com/RyanMatlock/eight-ball
 
