@@ -5,8 +5,8 @@
 ;;
 ;; (If silly things like 「M-x butterfly」 can exist, why can't this.)
 
-(defgroup eight-ball nil
-  "Customization group for EIGHT-BALL (Magic 8-Ball) function"
+(defgroup 8ball nil
+  "Ask the Magic 8-Ball a question."
   :group 'games)
 
 (defcustom eight-ball-reponses '("It is certain."
@@ -32,7 +32,7 @@
   "Response possibilities for EIGHT-BALL.
 Default values are standard Magic 8-ball responses."
   :type '(repeat string)
-  :group 'eight-ball)
+  :group '8ball)
 
 (defcustom eight-ball-kill-ring-include-timestamp t
   "Include timestamp when adding EIGHT-BALL response to KILL-RING?
@@ -40,14 +40,14 @@ Default: t."
   :type 'boolean
   :options '(choice (const :tag "Yes" t)
                     (const :tag "Omit timestamp" nil))
-  :group 'eight-ball)
+  :group '8ball)
 
 (defcustom eight-ball-timestamp-format "[%F %H:%M:%S]"
   "Timestamp format for EIGHT-BALL response in KILL-RING.
 Default: \"[%F %H:%M:%S]\" i.e. \"[<ISO-8601 date>⎵<hour(24)>:<min>:<sec>]\"
 See documentation for FORMAT-TIME-STRING for valid values."
   :type 'string
-  :group 'eight-ball)
+  :group '8ball)
 
 (defcustom eight-ball-print-question-with-response t
   "Include question with response in message?
@@ -55,7 +55,7 @@ Default: t."
   :type 'boolean
   :options '(choice (const :tag "Yes" t)
                     (const :tag "Print response only" nil))
-  :group 'eight-ball)
+  :group '8ball)
 
 (defun eight-ball (&optional add-to-kill-ring question)
   "Prompts user to ask a question, responds like a Magic 8-Ball.
