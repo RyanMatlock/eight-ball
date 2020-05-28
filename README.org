@@ -5,15 +5,14 @@ generator) big (yes or no) questions like, "Am I a good person?" or, "Should I
 get a burrito for lunch?" The Magic 8-Ball is here to help with that!
 
 * Usage
-=M-x eight-ball= will prompt you to ask a question, and it will respond with
-answer. Passing the universal argument to =eight-ball= (typically done by
+=M-x eight-ball= will prompt you to ask a question, and it will respond with a
+random answer. Passing the universal argument to =eight-ball= (typically done by
 invoking it with =C-u M-x eight-ball=) will copy a timestamp, the question, and
 response to the =kill-ring=.
 
-[TODO: fix internal link to work with GitHub]
-See [[*Customization][Customization]] for whether to print the question along with response in the
-minibuffer, whether or not to include the timestamp, what format the timestamp
-should take, and the responses with which the Magic 8-Ball can reply.
+See Customization section for whether to print the question along with response
+in the minibuffer, whether or not to include the timestamp, what format the
+timestamp should take, and the responses with which the Magic 8-Ball can reply.
 
 * Installation
 ** From GitHub
@@ -21,10 +20,9 @@ Assuming this repo has been cloned to =/path/to/eight-ball=, add the following t
 your init file:
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path "/path/to/eight-ball")
+(require 'eight-ball)
 #+END_SRC
-
-[TODO: Determine if ~;;;###autoload~ magic above ~(defun eight-ball ...)~ removes
-the need to also include ~(require 'eight-ball)~.]
+(Evaluate that code, and you're ready to go without having to restart Emacs.)
 
 ** TODO MELPA (?)
 (if/when added to MELPA):
@@ -33,5 +31,5 @@ M-x package-install RET eight-ball RET
 #+END_SRC
 
 * Customization
-To customize the behavior of =eight-ball=, use =M-x customize= \to =Applications= \to
-=Games= \to =8ball=.
+=eight-ball.el= provides the customization group =8ball=, which is available
+through the =customize= interface under =Applications/Games/8ball=.
