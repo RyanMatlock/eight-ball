@@ -99,15 +99,14 @@ and content of said queries."
                    size))
          (response (nth rand-index eight-ball-reponses)))
     (when add-to-kill-ring
-      (let (formatted-question-response)
-        (if eight-ball-kill-ring-include-timestamp
+      (let ((formatted-question-response (format "%s %s"
+                                                 question
+                                                 response)))
+        (when eight-ball-kill-ring-include-timestamp
             (setq formatted-question-response
-                  (format "%s %s %s"
+                  (format "%s %s"
                           (format-time-string eight-ball-timestamp-format)
-                          question
-                          response))
-          (setq formatted-question-response
-                (format "%s %s" question response)))
+                          formatted-question-response)))
         (kill-new formatted-question-response)))
     (if eight-ball-print-question-with-response
         (message "%s %s" question response)
