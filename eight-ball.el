@@ -1,4 +1,4 @@
-;;; eight-ball.el --- Ask the Magic 8-Ball a queustion.
+;;; eight-ball.el --- Ask the Magic 8-Ball a question.
 
 ;; Copyright (C) 2020 Ryan Matlock
 
