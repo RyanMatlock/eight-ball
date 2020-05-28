@@ -12,6 +12,8 @@
 
 ;; If silly things like 「M-x butterfly」 can exist, why can't this?
 
+;;; Code:
+
 (defgroup 8ball nil
   "Ask the Magic 8-Ball a question."
   :group 'games)
