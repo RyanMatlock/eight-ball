@@ -1,7 +1,17 @@
-;;; eight-ball --- Ask the Magic 8-Ball a queustion.
-;;;
+;;; eight-ball.el --- Ask the Magic 8-Ball a queustion.
+
+;; Copyright (C) 2020 Ryan Matlock
+
+;; Author: Ryan Matlock
+;; Created: 2020-05-28
+;; Version: 0.1
+;; Keywords: games
+;; URL: ...
+
+
 ;;; Commentary:
-;;; If silly things like 「M-x butterfly」 can exist, why can't this.
+
+;; If silly things like 「M-x butterfly」 can exist, why can't this?
 
 (defgroup 8ball nil
   "Ask the Magic 8-Ball a question."
@@ -47,6 +57,7 @@ See documentation for FORMAT-TIME-STRING for valid values."
   :type 'string
   :group '8ball)
 
+;;;###autoload
 (defcustom eight-ball-print-question-with-response t
   "Include question with response in message?
 Default: t."
@@ -101,3 +112,6 @@ and content of said queries."
     (if eight-ball-print-question-with-response
         (message "%s %s" question response)
       (message "%s" response))))
+
+(provide 'eight-ball)
+;;; eight-ball.el ends here
