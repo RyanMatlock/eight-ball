@@ -10,6 +10,10 @@
 
 ;;; Commentary:
 
+;; Provides an interactive function, EIGHT-BALL, that behaves like a Magic
+;; 8-Ball.  When passed \\[[universal-argument]], the question/response (and,
+;; by default, timestamp) are also added to the KILL-RING.
+;;
 ;; If silly things like 「M-x butterfly」 can exist, why can't this?
 
 ;;; Code:
