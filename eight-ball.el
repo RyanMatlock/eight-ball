@@ -89,7 +89,7 @@ Default: t."
 (defun eight-ball (&optional add-to-kill-ring question)
   "Prompts user to ask a question, responds like a Magic 8-Ball.
 Passing the \\[[universal-argument]]..."
-  (interactive "p\nsAsk the Magic 8-Ball a question: ")
+  (interactive "P\nsAsk the Magic 8-Ball a question: ")
   ;; (message "add-to-kill-ring: %s, question: %s" add-to-kill-ring question)
   (random t)
   (let* ((hash (secure-hash 'sha256 question))
@@ -105,14 +105,24 @@ Passing the \\[[universal-argument]]..."
          ;; results later to feel more confident that this is a reasonable
          ;; approach
          ;; I mean, it's unreasonable in the sense that I could just do
-         ;; (index (random size)), but I want to "mix in" the string
-         (index (% (random (- decimal-hash (% decimal-hash
+         ;; (rand-index (random size)), but I want to "mix in" the string
+         (rand-index (% (random (- decimal-hash (% decimal-hash
                                               size)))
                    size))
-         (response (nth index eight-ball-reponses)))
+         (response (nth rand-index eight-ball-reponses)))
     (when add-to-kill-ring
       (let (formatted-question-response)
-        ))
-    (message "%s" response)))
+        (if eight-ball-kill-ring-include-timestamp
+            (setq formatted-question-response
+                  (format "%s %s %s"
+                          (format-time-string eight-ball-timestamp-format)
+                          question
+                          response))
+          (setq formatted-question-response
+                (format "%s %s" question response)))
+        (kill-new formatted-question-response)))
+    (if eight-ball-print-question-with-response
+        (message "%s %s" question response)
+      (message "%s" response))))
 
 
