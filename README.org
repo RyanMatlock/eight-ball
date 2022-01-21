@@ -33,7 +33,7 @@ use this package using ~straight.el~, simply include the following in your init:
 
 ** From GitHub
 Clone this repo to ~/path/to/eight-ball~ [note: ~/path/to/~ should probably
-be something like =~/.emacs.d/=﻿], add the following to your init file:
+be something like =~/.emacs.d/=​], add the following to your init file:
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'load-path "/path/to/eight-ball")
