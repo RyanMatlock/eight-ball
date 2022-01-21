@@ -1,8 +1,8 @@
 # README for eight-ball
 * Purpose
-Sometimes you just want to ask the universe big yes or no questions like, "Am I
-a good person?" or, "Should I get a burrito for lunch?" The Magic 8-Ball is
-here to help with that!
+Sometimes you just want to ask the universe big yes-or-no questions like, ``Am
+I a good person?'' or, ``Should I get a burrito for lunch?'' The Magic 8-Ball
+is here to help with that.
 
 * Usage
 =M-x eight-ball= will prompt you to ask a question, and it will respond with a
@@ -15,20 +15,32 @@ in the minibuffer, whether or not to include the timestamp, what format the
 timestamp should take, and the responses with which the Magic 8-Ball can reply.
 
 * Installation
-** From GitHub
-Assuming this repo has been cloned to =/path/to/eight-ball=, add the following to
-your init file:
-#+BEGIN_SRC emacs-lisp
-(add-to-list 'load-path "/path/to/eight-ball")
-(require 'eight-ball)
-#+END_SRC
-(Evaluate that code, and you're ready to go without having to restart Emacs.)
+** Using ~straight.el~ (recommended)
+[[https://github.com/raxod502/straight.el][~straight.el~]] is a powerful Emacs package manager that makes it easy to install
+Emacs packages from the usual sources like GNU ELPA and MELPA as well as
+arbitrary git repos (such as this one). It works as an alternative to
+~package.el~, and the transition is relatively painless. In order to install and
+use this package using ~straight.el~, simply include the following in your init:
 
-** TODO MELPA (?)
-(if/when added to MELPA):
-#+BEGIN_SRC
-M-x package-install RET eight-ball RET
+#+BEGIN_SRC emacs-lisp
+  (straight-use-package
+   '(eight-ball
+     :type git
+     :host github
+     :repo "RyanMatlock/eight-ball"))
+  (require 'eight-ball)
 #+END_SRC
+
+** From GitHub
+Clone this repo to ~/path/to/eight-ball~ [note: ~/path/to/~ should probably
+be something like ~~/.emacs.d/~​], add the following to your init file:
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'load-path "/path/to/eight-ball")
+  (require 'eight-ball)
+#+END_SRC
+
+Evaluate that code, and you're ready to go without having to restart Emacs.
 
 * Customization
 =eight-ball.el= provides the customization group =8ball=, which is available
